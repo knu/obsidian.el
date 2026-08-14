@@ -21,10 +21,12 @@ jobs:
         with:
           version: ${{ matrix.emacs_version }}
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7
 
       - name: Install Eldev
-        run: curl -fsSL https://raw.github.com/org-roam/org-roam/master/github-eldev | sh
+        run: |
+          set -o pipefail
+          curl -fsSL https://raw.githubusercontent.com/emacs-eldev/eldev/master/webinstall/github-eldev | sh
 
       - name: Install dependencies
         run: make prepare
